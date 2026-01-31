@@ -1,6 +1,8 @@
 FROM alpine:latest
 
-RUN  apk add --no-cache restic
+ENV TZ=America/Montreal
+
+RUN  apk add --no-cache restic tzdata
 
 WORKDIR /app
 
