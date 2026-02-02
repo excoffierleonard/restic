@@ -7,6 +7,6 @@
 : "${RESTIC_PASSWORD:?Environment variable RESTIC_PASSWORD is required}"
 
 # Export relevant environment variables to .env file
-env | grep -E '^(AWS_|RESTIC_)' > /app/.env
+env | grep -E '^(AWS_|RESTIC_)' | sed "s/=/='/" | sed "s/$/'/" > /app/.env
 chmod 600 /app/.env
 exec crond -f

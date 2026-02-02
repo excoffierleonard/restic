@@ -1,15 +1,15 @@
 #!/bin/sh
 
 # Prevent concurrent executions
-LOCKFILE="/tmp/restic.lock"
+LOCKFILE="/app/restic.lock"
 exec 9>"$LOCKFILE"
 if ! flock -n 9; then
   echo "=== Backup skipped (already running): $(date) ==="
   exit 0
 fi
 
-# Exit on error
-set -e
+# Exit on error and unset variables
+set -eu
 
 # Load environment variables
 set -a
